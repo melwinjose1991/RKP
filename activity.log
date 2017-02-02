@@ -1,0 +1,22 @@
+Jan 23 - Feb 2 [ Week II & III] [ Part I : Explore and Model Knowledge Base ]
+=============================================================================
+- Explored Semantic Web and Linked Data
+	- JSON-LD seems like a promising format to store knowledge
+		- Has a well defined semantics, similar to WikiData
+		- Need to explore more about Framing and Normalization
+			- to convert JSON-LD to graph/tree data-structure for parsing
+
+Jan 15 - Jan 22 [ Week I ] [ Part I : Explore and Model Knowledge Base ]
+========================================================================
+- Explored WikiData. Complete Summary in 'WikiData.pdf'
+	- Have modeled Knowledge Base based on graphs
+	- Graph is generated manually by the wiki-community
+	
+- Projects that are storing text in knowledge base
+	- Inquire: http://inquireproject.com/
+	- ARISTO : http://allenai.org/aristo/
+	- Need to explore their model
+
+- Plan for Week II
+	- Explore ARISTO and Inquire
+	
