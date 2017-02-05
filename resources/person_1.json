@@ -1,0 +1,12 @@
+{
+  "@context": "http://schema.org/",
+  "@type": "Person",
+  "@id": "http://schema.org/p1",
+  "name": "Person#1",
+  "jobTitle": "Professor",
+  "telephone": "(425) 123-4567",
+  "url": "http://www.person#1.com",
+  "knows": {
+  	"@id":"http://schema.org/p2"
+  	}
+}
