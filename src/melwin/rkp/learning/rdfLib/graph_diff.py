@@ -6,10 +6,7 @@ n = Namespace("http://example.org/people/")
 n.bob = term.URIRef(u'http://example.org/people/bob')
 n.linda = term.URIRef(u'http://example.org/people/linda')
 
-RDF.type = term.URIRef(u'http://www.w3.org/1999/02/22-rdf-syntax-ns#type')
-FOAF.knows = term.URIRef(u'http://xmlns.com/foaf/0.1/knows')
-
-
+# g1 is the knowledge profile of the user
 g1 = Graph()
 g1.add( (n.bob, RDF.type, FOAF.Person) )
 g1.add( (n.bob, FOAF.name, Literal('bob')) )
@@ -17,23 +14,19 @@ g1.add( (n.bob, FOAF.knows, n.linda) )
 g1.add( (n.bob, FOAF.title, Literal('Mr')) )
 g1.add( (n.linda, FOAF.age, Literal(30)) )
 g1.add( (n.linda, FOAF.name, Literal('Linda') ) )
-print "G1:",g1.serialize(format='turtle')
+print "=== G1:Knoledge Profile of User ===\n",g1.serialize(format='turtle')
 
 
+# g2 is the knowledge contained in a article
 g2 = Graph()
 g2.add( (n.linda, RDF.type, FOAF.Person) ) 
 g2.add( (n.linda, FOAF.title, Literal('Mrs') ) )
 g2.add( (n.linda, FOAF.name, Literal('Linda') ) )
 g2.add( (n.linda, FOAF.taught, n.bob) )
-print "G2:",g2.serialize(format='turtle')
+print "=== G2:Knowledge Contained in an article ===\n",g2.serialize(format='turtle')
 
 
-#g3 = g1+g2
-#print "G1+G2",g3.serialize(format='turtle')
-
-#g4 = g1^g2
-#print "G1^G2",g4.serialize(format='n3')
-
+# To find nodes/edges present in G2 but not in G1
 g5 = g2-g1
-print "G2-G1",g5.serialize(format='n3')
+print "=== G2-G1:find out nodes/edges in G2 but not in G1 ===\n",g5.serialize(format='n3')
 
