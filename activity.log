@@ -1,3 +1,14 @@
+Feb 13 - Feb 26 [Week V & VI]
+=============================
+	- Explored the storing mechanism in rdfLib
+		- uses hexastore
+	- Recommendation Algorithm
+		- +1 score if an article adds an new relations to the
+			user's knowledge profile
+	- Started working on the web-poc
+		- using LevelGraph as RDF store
+		- supports adding and deleting
+
 Feb 2 - Feb 12 [ Week IV ][ Part I : Explore and Model Knowledge Base ]
 =======================================================================
 - RDF seems like an appropriate model. It is an standard and supported by W3C
