@@ -8,6 +8,9 @@ Feb 13 - Feb 26 [Week V & VI]
 	- Started working on the web-poc
 		- using LevelGraph as RDF store
 		- supports adding and deleting
+		- web-poc@ https://github.com/melwinjose1991/RKP/tree/master/src/melwin/rkp/web-poc
+	
+	- Pending : finding a data-set
 
 Feb 2 - Feb 12 [ Week IV ][ Part I : Explore and Model Knowledge Base ]
 =======================================================================
