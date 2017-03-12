@@ -6,3 +6,8 @@
 *.classpath
 *.project
 *.pydevproject
+
+/src/melwin/rkp/web-poc/G1/*
+/src/melwin/rkp/web-poc/G2/*
+/src/melwin/rkp/web-poc/node_modules/*
+*.log

@@ -1,3 +1,9 @@
+Feb 27 - March 11
+=================
+	- Web POC
+		Stuck due to inconsistency in LevelGraph's behaviour in Node and Browser
+		Have contacted the owners : https://github.com/mcollina/levelgraph/issues/166
+
 Feb 13 - Feb 26 [Week V & VI]
 =============================
 	- Explored the storing mechanism in rdfLib
