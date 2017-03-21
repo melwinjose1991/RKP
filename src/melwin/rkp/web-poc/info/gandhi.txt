@@ -1,0 +1,56 @@
+Mohandas Karamchand Gandhi was born on 2 October 1869 in Porbandar. His father, Karamchand Uttamchand Gandhi (1822–1885), served as the diwan (chief minister) of Porbandar state.
+
+Q1001 : P569 : <2 October 1869>
+Q1001 : P19 : Q6419912
+Q1001 : P22 : Q11735530
+
+Q11735530 : P569 : <1822>
+Q11735530 : P570 : <1885>
+Q11735530 : P106 : Q82955
+
+------
+
+Mahatma Gandhi was assassinated in 1948 on 30th of January by the Nathuram Godse, a Hindu activist. His body was cremated at Raj Ghat, New Delhi. 
+
+Q1001 : P157 : Q312553
+Q312553 : P106 : Q82955
+Q1001 : P570 : <30 January 1948>
+
+Q1001 : P119 : Q1210083
+Q1210083 : P131 : Q987
+
+----
+
+Mohandas Karamchand Gandhi
+Born: October 2, 1869, Porbandar
+Died: 30 January 1948
+Father: Karamchand Gandhi
+Spouse: Kasturba Gandhi
+
+Q1001 : P569 : <2 October 1869>
+Q1001 : P570 : <30 January 1948>
+Q1001 : P22 : Q11735530
+Q1001 : P26 : Q264908
+
+----
+
+Mohandas Karamchand Gandhi
+Born: October 2, 1869, Porbandar
+Died: 30 January 1948
+
+Q1001 : P569 : <2 October 1869>
+Q1001 : P570 : <30 January 1948>
+
+----
+
+Mohandas Karamchand Gandhi
+Father: Karamchand Gandhi
+Spouse: Kasturba Gandhi
+
+Q1001 : P22 : Q11735530
+Q1001 : P26 : Q264908
+
+----
+
+
+
