@@ -8,19 +8,19 @@ var contents = [
 	`Mahatma Gandhi was assassinated in 1948 on 30th of January by the Nathuram Godse, 
 	a Hindu activist. His body was cremated at Raj Ghat, New Delhi`, 
 	
-	`Mohandas Karamchand Gandhi
-	Born: October 2, 1869, Porbandar
-	Died: 30 January 1948
-	Father: Karamchand Gandhi
-	Spouse: Kasturba Gandhi`, 
+	`Mohandas Karamchand Gandhi</br>
+	Born: October 2, 1869, Porbandar</br>
+	Died: 30 January 1948</br>
+	Father: Karamchand Gandhi</br>
+	Spouse: Kasturba Gandhi</br>`, 
 	
-	`Mohandas Karamchand Gandhi
-	Born: October 2, 1869, Porbandar
-	Died: 30 January 1948`, 
+	`Mohandas Karamchand Gandhi</br>
+	Born: October 2, 1869, Porbandar</br>
+	Died: 30 January 1948</br>`, 
 	
-	`Name: Mohandas Karamchand Gandhi
-	Father: Karamchand Gandhi
-	Spouse: Kasturba Gandhi`
+	`Name: Mohandas Karamchand Gandhi</br>
+	Father: Karamchand Gandhi</br>
+	Spouse: Kasturba Gandhi</br>`
 ];
 
 var triples = [
@@ -64,6 +64,7 @@ content_graphs[2] = levelgraph(level("content-2"));
 content_graphs[3] = levelgraph(level("content-3"));
 content_graphs[4] = levelgraph(level("content-4"));
 
+// Graph Initialization Functions
 function initGraph(content_index){
 	content_graphs[content_index].put(triples[content_index], function(err) {
 		if(DEBUG) console.log("inserted triples into graph-", content_index);
@@ -71,6 +72,7 @@ function initGraph(content_index){
 	});
 }
 
+// Display Functions
 function displayAll(graph){
 	graph.search({
 	    subject: graph.v("x"),
@@ -84,6 +86,7 @@ function displayAll(graph){
 	); 
 }
 
+// Graph Difference Functions
 function remove(graph, triple){
 	graph.del(triple, function(err) {
 		console.log("Removed ", triple, err)
@@ -111,6 +114,7 @@ function graphDifference(graph1, graph2){
 	displayAll(graph1)
 }
 
+// Graph add Functions
 function add(graph, triple){
 	graph.put(triple, function(err) {
 		console.log("Added ", triple, err)
@@ -118,7 +122,7 @@ function add(graph, triple){
 }
 
 function addTo(graph1, graph2){
-	// graph1 =  graph1 + graph2
+	// graph1 = graph1 + graph2
 	graph2.search({
 	    subject: graph2.v("x"),
 	    predicate: graph2.v("y"),
@@ -138,10 +142,27 @@ function addTo(graph1, graph2){
 	displayAll(graph1)
 }
 
+// Center Panel Functions
+function addToUserGraph(content_index){
+	addTo(knowledge_profile, content_graphs[content_index])
+	showUserGraph()
+}
+
+function showContentText(content_index){
+	document.getElementById("article_content_text_div").innerHTML = contents[content_index];
+}
+
 function initOnLoad(){
 	for (i = 0; i < 5; i++) { 
-		initGraph(0);
-		new_element = "<div id='Rank-"+i+"'>Article-"+i+" <button type='button'>Show >></button></div>"
+		initGraph(i);
+		show_button = "<button type='button' onClick='showContentText("+i+")'> Show >></button>"
+		mark_button = "<button type='button' onClick='addToUserGraph("+i+")'> << Add </button>"
+		new_element = "<div id='Rank-"+i+"'>"+mark_button+" Article-"+i+" "+show_button+"</div>"
 		document.getElementById("articles_recommendations_div").innerHTML += new_element;
 	}
+}
+
+// Left Panel Functions
+function showUserGraph(){
+	document.getElementById("users_knowledge_graph_div").innerHTML = knowledge_profile;
 }
