@@ -19,7 +19,6 @@ var contents = [
 	Died: 30 January 1948</br>`, 
 	
 	`Name: Mohandas Karamchand Gandhi</br>
-	Father: Karamchand Gandhi</br>
 	Spouse: Kasturba Gandhi</br>`
 ];
 
@@ -50,10 +49,11 @@ var triples = [
 		{subject : "Q1001", predicate : "P570", object : "30 January 1948" }
 	],
 	[
-		{subject : "Q1001", predicate : "P22", object : "Q11735530" },
 		{subject : "Q1001", predicate : "P26", object : "Q264908" }
 	]
 ];
+
+var triples_count = [6, 5, 4, 2, 1]
 
 var knowledge_profile = levelgraph(level("user-graph"));
 
@@ -159,6 +159,66 @@ function initOnLoad(){
 		mark_button = "<button type='button' onClick='addToUserGraph("+i+")'> << Add </button>"
 		new_element = "<div id='Rank-"+i+"'>"+mark_button+" Article-"+i+" "+show_button+"</div>"
 		document.getElementById("articles_recommendations_div").innerHTML += new_element;
+	}
+}
+
+var tmp_triples = [];
+function getTriples(graph){
+	tmp_triples = []
+	graph.search({
+	    subject: graph.v("x"),
+	    predicate: graph.v("y"),
+	    object: graph.v("z")
+	  }, function(err, list) {
+			for(entry of list){
+				console.log("Entry", entry)
+				triple = {
+					subject : entry["x"],
+					predicate : entry["y"],
+					object : entry["z"]
+				}
+				tmp_triples.push(triple)
+			} 
+	  }
+	 ); 
+}
+
+// stores the count of triples of user's knowledge 
+// that are present in a content's graph
+var triples_found = [];	
+function getExistingCount(content_index, content_triples){
+	triples_found[content_index]=0
+	for(triple of content_triples){
+		content_graphs[content_index].search(triple, 
+			function(err, results) {
+			  for(result of results){
+				  console.log(result)
+				  triples_found[content_index]++
+			  }
+		  });
+	}
+}
+
+// gets the user's triples
+function reRank1(){
+	getTriples(knowledge_profile)
+	setTimeout(reRank2, 500);
+}
+
+// gets the triple count existing in content's graph
+function reRank2(){
+	users_triples = tmp_triples.slice(0)
+	for (i = 0; i < 5; i++) { 
+		getExistingCount(i, users_triples)
+	}
+	setTimeout(reRank3, 500)
+}
+
+// gets the triple count non-existing in content's graph
+var difference_map = {}
+function reRank3(){
+	for (i = 0; i < 5; i++) { 
+		difference_map[i]=triples_count[i]-triples_found[i]
 	}
 }
 
