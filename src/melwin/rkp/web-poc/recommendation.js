@@ -218,7 +218,30 @@ function reRank2(){
 var difference_map = {}
 function reRank3(){
 	for (i = 0; i < 5; i++) { 
-		difference_map[i]=triples_count[i]-triples_found[i]
+		difference_map[i] = triples_count[i] - triples_found[i]
+	}
+	setTimeout(reRank4,500)
+}
+
+function reRank4() {
+	var sorted_articles = [];
+	for (var key in difference_map) sorted_articles.push([key, difference_map[key]]);
+	sorted_articles.sort(function(a, b) {
+	    a = a[1];
+	    b = b[1];
+	    return a < b ? 1 : (a > b ? -1 : 0);
+	});
+	
+	document.getElementById("articles_recommendations_div").innerHTML="";
+	for (var i = 0; i < sorted_articles.length; i++) {
+	    var key = sorted_articles[i][0];
+	    var value = sorted_articles[i][1];
+	    console.log(key,value)
+	    
+	    show_button = "<button type='button' onClick='showContentText("+key+")'> Show >></button>"
+		mark_button = "<button type='button' onClick='addToUserGraph("+key+")'> << Add </button>"
+		new_element = "<div id='Rank-"+i+"'>"+mark_button+" Article-"+key+" "+show_button+"</div>"
+		document.getElementById("articles_recommendations_div").innerHTML += new_element;
 	}
 }
 
