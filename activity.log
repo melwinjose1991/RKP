@@ -1,3 +1,12 @@
+March 12 - March 28
+===================
+	- Done with Web-POC 
+		- Done with the implementation of recommendation & graph difference
+		- Issue appears only in browser 
+			- please clear application cache everytime to avoid 
+		- Used 'vis' javascript library for graph visualization
+	- NEXT: Would be working on the paper and on web-POC reviews
+
 Feb 27 - March 11
 =================
 	- Web POC
