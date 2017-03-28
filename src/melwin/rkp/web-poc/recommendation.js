@@ -53,6 +53,10 @@ var triples = [
 	]
 ];
 
+var id_name = {
+		"Q1001" : "Mahathma Ganhi"
+}
+
 var triples_count = [6, 5, 4, 2, 1]
 
 var knowledge_profile = levelgraph(level("user-graph"));
@@ -140,16 +144,48 @@ function addTo(graph1, graph2){
 	  }
 	 ); 
 	displayAll(graph1)
+	setTimeout(showUserGraph1, 500);
 }
 
-// Center Panel Functions
+// ***	Center Panel	***
 function addToUserGraph(content_index){
 	addTo(knowledge_profile, content_graphs[content_index])
-	showUserGraph()
+}
+
+function showContentGraph(content_index){
+	var nodes_list = []
+	var added_nodes = []
+	for(entry of triples[content_index]){
+		if(added_nodes.indexOf(entry["subject"])<0){
+			nodes_list.push({id: entry["subject"], label: entry["subject"]})
+			added_nodes.push(entry["subject"])
+		}
+		if(added_nodes.indexOf(entry["object"])<0){
+			nodes_list.push({id: entry["object"], label: entry["object"]})
+			added_nodes.push(entry["object"])
+		}
+	}
+	var nodes = new vis.DataSet(nodes_list);
+
+	var edges_list = []
+	for(entry of triples[content_index]){
+		edges_list.push({from: entry["subject"], to: entry["object"], label:entry["predicate"]})
+	}
+	var edges = new vis.DataSet(edges_list);
+
+	var data = {
+	    nodes: nodes,
+	    edges: edges
+	};
+
+	var options = {};
+	var container = document.getElementById('article_content_graph_div');
+	var network = new vis.Network(container, data, options);
 }
 
 function showContentText(content_index){
 	document.getElementById("article_content_text_div").innerHTML = contents[content_index];
+	showContentGraph(content_index);
 }
 
 function initOnLoad(){
@@ -160,6 +196,9 @@ function initOnLoad(){
 		new_element = "<div id='Rank-"+i+"'>"+mark_button+" Article-"+i+" "+show_button+"</div>"
 		document.getElementById("articles_recommendations_div").innerHTML += new_element;
 	}
+
+	//var container = document.getElementById('users_knowledge_graph_div');
+	//var network = new vis.Network(container, data, options);
 }
 
 var tmp_triples = [];
@@ -245,7 +284,44 @@ function reRank4() {
 	}
 }
 
-// Left Panel Functions
-function showUserGraph(){
-	document.getElementById("users_knowledge_graph_div").innerHTML = knowledge_profile;
+// ***	Left Panel	***
+function showUserGraph1(){
+	getTriples(knowledge_profile)
+	setTimeout(showUserGraph2, 500);
 }
+
+function showUserGraph2(){
+	var nodes_list = []
+	var added_nodes = []
+	for(entry of tmp_triples){
+		if(added_nodes.indexOf(entry["subject"])<0){
+			nodes_list.push({id: entry["subject"], label: entry["subject"]})
+			added_nodes.push(entry["subject"])
+		}
+		if(added_nodes.indexOf(entry["object"])<0){
+			nodes_list.push({id: entry["object"], label: entry["object"]})
+			added_nodes.push(entry["object"])
+		}
+	}
+	var nodes = new vis.DataSet(nodes_list);
+
+	var edges_list = []
+	for(entry of tmp_triples){
+		edges_list.push({from: entry["subject"], to: entry["object"], label:entry["predicate"]})
+	}
+	var edges = new vis.DataSet(edges_list);
+
+	var data = {
+	    nodes: nodes,
+	    edges: edges
+	};
+
+	var options = {};
+	var container = document.getElementById('users_knowledge_graph_div');
+	var network = new vis.Network(container, data, options);
+	
+	tmp_triples = []
+	setTimeout(reRank1, 500);
+}
+
+// ***	Right Panel	***
